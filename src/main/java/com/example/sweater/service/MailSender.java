@@ -8,16 +8,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MailSender {
-    //Класс для рассылки сообщений
-
+    // Класс для рассылки сообщений
     @Autowired
     private JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String username;
 
-    //Метод который будет рассылать почту
-    public void send (String emailTo, String subject, String message){
+
+    public void send(String emailTo, String subject, String message) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
 
         mailMessage.setFrom(username);

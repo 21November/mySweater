@@ -18,7 +18,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String userList(Model model) {
@@ -26,7 +25,6 @@ public class UserController {
 
         return "userList";
     }
-
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
@@ -36,7 +34,6 @@ public class UserController {
 
         return "userEdit";
     }
-
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
@@ -51,7 +48,7 @@ public class UserController {
     }
 
     @GetMapping("profile")
-    public String gatProfile(Model model, @AuthenticationPrincipal User user){
+    public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
 
@@ -63,7 +60,7 @@ public class UserController {
             @AuthenticationPrincipal User user,
             @RequestParam String password,
             @RequestParam String email
-    ){
+    ) {
         userService.updateProfile(user, password, email);
 
         return "redirect:/user/profile";
